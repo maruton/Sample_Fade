@@ -26,6 +26,7 @@ public class Main : MonoBehaviour {
 	void Animation_Standby(){
 		animinfo = animator.GetCurrentAnimatorStateInfo(0);//Layer 0
 		animator.Play(animinfo.nameHash, 0, 0.0f);//name, layer#, time
+		Animation_PauseOn();
 	}
 
 	//Fade_uGUI fade;
@@ -49,6 +50,7 @@ public class Main : MonoBehaviour {
 				ActionFadeIn();//Fade in
 				break;
 			case eMode.Playing:
+				Animation_PauseOff();
 				break;
 			case eMode.Fadeout:
 				ActionFadeOut();//Fade out
@@ -70,7 +72,6 @@ public class Main : MonoBehaviour {
 
 	void cb_FadeIn_Complete(){
 		mode = eMode.Playing;
-		Animation_PauseOff();
 	}
 	void cb_FadeOut_Complete(){
 		mode = eMode.Fadein;
